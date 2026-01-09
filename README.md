@@ -1,66 +1,85 @@
-# this course base on this template https://github.com/billowdev/nodejs-ts-fastify-mvc-starter-template
+# This course is based on this template: https://github.com/akkaraponph/nodejs-ts-fastify-mvc-starter-template
 
-## Node.js + Fastify + Sequelize + MySQL 
+## What you will learn
 
-## mrcs = Model-Routes-Controllers-Services
+This course teaches you how to build an API using:
+- Node.js
+- Fastify (a web framework)
+- Sequelize (for working with databases)
+- MySQL (database)
+
+## About MRCS
+
+MRCS means Model-Routes-Controllers-Services. This is a way to organize your code. It helps you keep your code clean and easy to understand.
 
 ## BillowDev Youtube
 
+## Setup Videos
 
-## [How to Install Git and using GitHub](https://youtu.be/W-jW4givkWs)
-## [How to Install Node.js and VS code](https://youtu.be/R4kmFas0f38)
-## [How to Install Laragon](https://youtu.be/OuJXDowtExc)
+Watch these videos first to install the tools you need:
+
+- [How to Install Git and using GitHub](https://youtu.be/W-jW4givkWs)
+- [How to Install Node.js and VS code](https://youtu.be/R4kmFas0f38)
+- [How to Install Laragon](https://youtu.be/OuJXDowtExc)
 
 
 ## [Node js TypeScript Fastify EP 01 Intro](https://youtu.be/mtW0EbDAZj4)
+
+In this episode, you will learn how to start your project and create your first API.
+
+### Step 1: Start a new project
+
+First, create a new Node.js project. Open your terminal and type:
 
 ```bash
 npm init -y
 ```
 
-### if you want to use yarn
+This command creates a file called `package.json`. This file stores information about your project.
 
-#### install yarn at global
+### Step 2: Using Yarn (Optional)
+
+You can use npm or yarn. Both are package managers. They help you install libraries for your project.
+
+If you want to use yarn, install it first:
 
 ```bash
 npm install -g yarn
 ```
 
-##### then when you want to install package by using 'yarn' package manager
+Here are the yarn commands you need to know:
 
-###### 'npm install' === 'yarn add'
+- `npm install` is the same as `yarn add`
+- `npm install -D` is the same as `yarn add -D`
+- `npm run` is the same as `yarn`
 
-```bash
-yarn add
-```
+### Step 3: Install TypeScript tools
 
-###### 'npm install -D' === 'yarn add -D'
+You need to install TypeScript and some tools. TypeScript is a language that adds types to JavaScript.
 
-```bash
-yarn add -D
-```
-
-###### 'npm run' === 'yarn'
-
-```bash
-yarn
-```
-
-### install ts-node and typescript
+Type this command in your terminal:
 
 ```bash
 npm install --save-dev ts-node @types/node typescript
 ```
-or
+
+Or if you use yarn:
+
 ```bash
 yarn add -D ts-node @types/node typescript
 ```
 
-### create the tscofig file
+### Step 4: Create TypeScript config file
+
+Now create a TypeScript configuration file. This file tells TypeScript how to work with your code.
+
+Type this command:
 
 ```bash
 npx tsc --init
 ```
+
+This creates a file called `tsconfig.json`. Copy this code into that file:
 
 #### tsconfig.json
 
@@ -95,45 +114,59 @@ npx tsc --init
 }
 ```
 
-### create the app
+### Step 5: Install Fastify
 
-### install fastify
+Fastify is a web framework. It helps you build APIs quickly.
+
+Install it with this command:
 
 ```bash
 npm install fastify
 ```
-or
+
+Or if you use yarn:
+
 ```bash
 yarn add fastify
 ```
 
-### create index.ts in root folder
+### Step 6: Create your first file
 
-```bash
-index.ts
-```
+Create a new file called `index.ts` in your project root folder.
 
-### trying the code below for your first api
+### Step 7: Write your first API
 
-### 1. import fastify
+Now you will write code to create your first API. Follow these steps:
+
+#### Step 7.1: Import Fastify
 
 ```ts
 import fastify from "fastify";
 ```
 
-### 2. create the app
+This line imports the Fastify library.
+
+#### Step 7.2: Create the app
+
+Next, create your app:
 
 ```ts
 const app = fastify()
 ```
 
-### 3. create the first endpoint or route for your api
+#### Step 7.3: Create your first route
+
+A route is a URL that your API can respond to. Create your first route:
 
 ```ts
 app.get("/", async () => "SERVER");
 ```
 
-### 4. add port and run app using app.listen
+This creates a route at "/". When someone visits this URL, they will see "SERVER".
+
+#### Step 7.4: Start your server
+
+Now you need to start your server. Add this code:
 
 ```ts
     const PORT = 5000
@@ -146,17 +179,25 @@ app.get("/", async () => "SERVER");
     })
 ```
 
-### 5. run your api type the script below in your terminal
+This code starts your server on port 5000.
+
+#### Step 7.5: Run your API
+
+Save your file. Then open your terminal and type:
 
 ```bash
 ts-node index.ts
 ```
 
-#### it should be showing the message "SERVE ON 5000"
+You should see the message "SERVE ON 5000" in your terminal. This means your API is running!
 
-### 6. make log it looking good by using log options 
+### Step 8: Make your logs look better
 
-#### 6.1 add the options for our app
+The logs help you see what your API is doing. Let's make them look better.
+
+#### Step 8.1: Add logging options
+
+Change your app code to this:
 
 ```ts
 const app = fastify({
@@ -164,7 +205,11 @@ const app = fastify({
 })
 ```
 
-#### 6.2 use this code below replace code from the 4.
+This turns on logging.
+
+#### Step 8.2: Update your listen code
+
+Replace the code from step 7.4 with this:
 
 ```ts
     const PORT = 5000
@@ -177,7 +222,11 @@ const app = fastify({
 	})
 ```
 
-##### 6.3 then your log will show like below
+This uses the logger instead of console.log.
+
+#### Step 8.3: See your logs
+
+When you run your API now, you will see logs like this:
 
 ```bash
 {"level":30,"time":1676779096246,"pid":25344,"hostname":"billo","msg":"Server listening at http://[::1]:5000"}
@@ -185,22 +234,35 @@ const app = fastify({
 {"level":30,"time":1676779096248,"pid":25344,"hostname":"billo","msg":"SERVE ON 5000"}
 ```
 
-### 7. testing your api using thunder client
+### Step 9: Test your API
 
-#### searching on visual studio code extensions
+You can test your API with Thunder Client. It is a tool for testing APIs. You can find it in the Visual Studio Code extensions.
 
-however you can use another solution for test your api like postman or if api you is get method you also use browser for that but i prefer using thunder client or postman or insomnia because it can use another http method such as GET POST PUT PATCH DELETE etc.
+You can also use other tools like Postman or Insomnia. These tools let you test different HTTP methods like GET, POST, PUT, PATCH, and DELETE. If your API uses GET method, you can also test it in your browser.
 
 ## [Node js TypeScript Fastify EP 02 Thunder client](https://youtu.be/xkUr9DC3Ny4)
 
-### install extension
+In this episode, you will learn how to test your API using Thunder Client.
 
-<img src="https://raw.githubusercontent.com/billowdev/nodejs-typescript-fastify-course/main/README/images/thunder-client.png" alt="thunder-client">
+### What is Thunder Client?
 
-<img src="https://raw.githubusercontent.com/billowdev/nodejs-typescript-fastify-course/main/README/images/how-to-use-thunder-client.png" alt="how-to-use-thunder-client">
+Thunder Client is a tool for testing APIs. It works inside Visual Studio Code. You can use it to send requests to your API and see the responses.
 
+### Step 1: Install Thunder Client
 
-#### 8. so the first time code in index.ts file will be
+Open Visual Studio Code. Go to the Extensions section. Search for "Thunder Client" and install it.
+
+<img src="https://raw.githubusercontent.com/akkaraponph/nodejs-typescript-fastify-course/main/README/images/thunder-client.png" alt="thunder-client">
+
+### Step 2: How to use Thunder Client
+
+After installing Thunder Client, you will see a new icon in your sidebar. Click on it to open Thunder Client. You can create requests and test your API there.
+
+<img src="https://raw.githubusercontent.com/akkaraponph/nodejs-typescript-fastify-course/main/README/images/how-to-use-thunder-client.png" alt="how-to-use-thunder-client">
+
+### Your complete index.ts file
+
+After following all the steps in EP 01, your `index.ts` file should look like this:
 
 ```ts
 import fastify from "fastify";
@@ -221,13 +283,23 @@ app.listen({port:Number(PORT)}, (err) => {
 })
 ```
 
-## New directory src and controllers routes services etc following below
-
 ## [Node js TypeScript Fastify EP 03 App ](https://youtu.be/49gv58xXmGQ)
 
-### 1.1 split logic in index.ts to src/app.ts
+In this episode, you will learn how to organize your code better. We will move the app logic to a separate file.
 
-#### code in app.ts
+### Why organize code?
+
+When your code grows, it is better to organize it. This makes your code easier to read and maintain. We will create a `src` folder and put our code there.
+
+### Step 1: Create the src folder
+
+First, create a new folder called `src` in your project root.
+
+### Step 2: Move app logic to src/app.ts
+
+Create a new file called `app.ts` inside the `src` folder. Move the app creation code there.
+
+#### Code for src/app.ts
 
 ```ts
 import fastify, { FastifyServerOptions } from "fastify";
@@ -241,7 +313,11 @@ const App = (options: FastifyServerOptions) => {
 export default App
 ```
 
-##### code in index.ts
+This code creates a function called `App`. This function takes options and creates a Fastify app. It returns the app so you can use it later.
+
+#### Code for index.ts
+
+Now update your `index.ts` file. Import the `App` function and use it to create your app:
 
 ```ts
 import App from "./src/app";
@@ -259,36 +335,47 @@ app.listen({port:Number(PORT)}, (err) => {
 })
 ```
 
+### What changed?
+
+- Before: All your code was in `index.ts`
+- After: The app logic is in `src/app.ts`, and `index.ts` only starts the server
+
+This makes your code more organized. When you add more features, you will add them to the `src` folder.
+
 ## [Node js TypeScript Fastify EP 04 Routes](https://youtu.be/6TalO0VXYo8)
 
-### 2.1 create routes in another file src/routes i will example for src/routes/article.route.ts
+In this episode, you will learn how to create routes. Routes are URLs that your API responds to.
 
-#### 1) new director 'routes' and create article.route.ts
+### What is a route?
 
-```
-article.route.ts
-```
+A route is a URL path. When someone visits that URL, your API responds. For example, `/api/v1/articles` is a route.
 
-##### create route for articleRouter
+### Step 1: Create the routes folder
+
+Create a new folder called `routes` inside the `src` folder.
+
+### Step 2: Create article route file
+
+Create a new file called `article.route.ts` inside the `src/routes` folder.
+
+### Step 3: Write the route code
 
 ```ts
-import { FastifyInstance } from "fastify"; // import FastifyInstance
+import { FastifyInstance } from "fastify";
 
 const articleRouter = async (app: FastifyInstance) => {
-	// route api app.method("path", {option}, handler)
-	// create .get route endpoint for article route that '/'
-	// mockup data
+	// This is sample data for testing
 	const article = {
 		id: "1",
 		name: "node.js fastify",
-		desc: "going fasting with jumping course 0 to 100 ><"
+		desc: "Fast and easy course for building APIs"
 	}
+	
+	// Create a GET route at "/"
 	app.get(
 		"/",
-		// function handler: RouteHandlerMethod<RawServerDefau lt, IncomingMessage, ServerResponse<IncomingMessage>, RouteGenericInterface, unknown, FastifySchema, FastifyTypeProviderDefault, FastifyBaseLogger>):
 		() => {
 			return {
-				// mockup data
 				articles: [
 					article
 				]
@@ -300,82 +387,113 @@ const articleRouter = async (app: FastifyInstance) => {
 export default articleRouter;
 ```
 
-##### 2) create index.ts inside route for export file
+This code creates a router for articles. It has one route that returns sample data.
+
+### Step 4: Create routes index file
+
+Create a new file called `index.ts` inside the `src/routes` folder. This file exports all your routes.
 
 ```ts
 import articleRouter from "./article.route";
 
-export { articleRouter};
+export { articleRouter };
 ``` 
 
-#### 2.2 /src/app 
+### Step 5: Register the route in app.ts
 
-##### app.ts file import article route and register the router with prefix "/api/v1/articles"
+Now you need to tell your app to use this route. Update your `src/app.ts` file.
 
 ```ts
 import fastify, { FastifyServerOptions } from "fastify";
-import {articleRouter} from "./routes";
+import { articleRouter } from "./routes";
 
 const App = (options: FastifyServerOptions) => {
 	const app = fastify(options)
 	
 	app.get("/", async () => "SERVER");
+	// Register the article router with a prefix
 	app.register(articleRouter, { prefix: "/api/v1/articles" });
 	return app
 }
 export default App
 ```
 
-#### 2.3 restart the app by cancel terminal using CTRL + C command and ts-node index.ts
+The `prefix` means all article routes will start with `/api/v1/articles`.
 
-#### 2.4 result api in thunder client
+### Step 6: Test your route
 
-<img src="https://raw.githubusercontent.com/billowdev/nodejs-typescript-fastify-course/main/README/images/api-v1-aticles-get.png" alt="api-v1-aticles-get">
+1. Stop your server by pressing `CTRL + C` in your terminal
+2. Start it again with: `ts-node index.ts`
+3. Open Thunder Client and test the route: `http://localhost:5000/api/v1/articles`
+
+### Result
+
+You should see the article data when you visit the route:
+
+<img src="https://raw.githubusercontent.com/akkaraponph/nodejs-typescript-fastify-course/main/README/images/api-v1-aticles-get.png" alt="api-v1-aticles-get">
+
+<img src="https://raw.githubusercontent.com/akkaraponph/nodejs-typescript-fastify-course/main/README/images/api-v1-aticles-get.png" alt="api-v1-aticles-get">
 
 
 ## [Node js TypeScript Fastify EP 05 Controllers](https://youtu.be/pE7Z6UaLDi0)
 
-### 1. controllers/article.controller.ts
+In this episode, you will learn about controllers. Controllers handle the logic for your routes.
+
+### What is a controller?
+
+A controller is a function that handles requests. When someone visits a route, the controller decides what to do and what to return.
+
+### Step 1: Create controllers folder
+
+Create a new folder called `controllers` inside the `src` folder.
+
+### Step 2: Create article controller
+
+Create a new file called `article.controller.ts` inside the `src/controllers` folder.
 
 ```ts
 export const handleGetArticle = () => {
-	// mockup data
+	// This is sample data for testing
 	const article = {
 		id: "1",
 		name: "node.js fastify",
-		desc: "going fasting with jumping course 0 to 100 ><"
+		desc: "Fast and easy course for building APIs"
 	}
 	return {
-		// mockup data
 		articles: [
 			article
 		]
 	}
 }
+
 export default {
 	handleGetArticle
 }
 ```
 
-### 2. controllers/index.ts
+This controller function returns article data. Later, it will get data from a service.
+
+### Step 3: Create controllers index file
+
+Create a new file called `index.ts` inside the `src/controllers` folder.
 
 ```ts
 import articlesController from "./article.controller";
 export { articlesController };
-
 ```
 
-### 3. routes/article.route
+### Step 4: Update the route to use the controller
+
+Now update your `src/routes/article.route.ts` file to use the controller.
 
 ```ts
-import { FastifyInstance } from "fastify"; // import FastifyInstance
+import { FastifyInstance } from "fastify";
 import articleController from './../controllers/article.controller';
 
 const articleRouter = async (app: FastifyInstance) => {
-	// route api app.method("path", {option}, handler)
+	// Use the controller function as the handler
 	app.get(
 		"/",
-		// function handler
 		articleController.handleGetArticle
 	);
 };
@@ -383,16 +501,30 @@ const articleRouter = async (app: FastifyInstance) => {
 export default articleRouter;
 ```
 
+Now your route uses the controller. This separates the route logic from the business logic.
+
 ## [Node js TypeScript Fastify EP 06 Services](https://youtu.be/n-4wBxZiWMQ)
 
-### 1. services/article.service.ts
+In this episode, you will learn about services. Services contain the business logic of your application.
+
+### What is a service?
+
+A service is where you put your business logic. It handles things like getting data or processing information. Controllers call services.
+
+### Step 1: Create services folder
+
+Create a new folder called `services` inside the `src` folder.
+
+### Step 2: Create article service
+
+Create a new file called `article.service.ts` inside the `src/services` folder.
 
 ```ts
 export const getArticles = () => {
 	const data = {
 		id: "1",
 		name: "node.js fastify",
-		desc: "going fasting with jumping course 0 to 100 ><"
+		desc: "Fast and easy course for building APIs"
 	}
 
 	return { response: data }
@@ -403,14 +535,20 @@ export default {
 }
 ```
 
-### 2. services/index.ts
+This service function returns article data. Later, it will get data from a database.
+
+### Step 3: Create services index file
+
+Create a new file called `index.ts` inside the `src/services` folder.
 
 ```ts
 import articleService from "./article.service";
 export { articleService };
 ```
 
-### 3. controllers/article.controller
+### Step 4: Update the controller to use the service
+
+Now update your `src/controllers/article.controller.ts` file to use the service.
 
 ```ts
 import { articleService } from "../services";
@@ -424,48 +562,90 @@ export default {
 }
 ```
 
+Now your controller calls the service. This separates the request handling from the business logic.
+
 ## [Node js TypeScript Fastify EP 07 MySQL Database](https://youtu.be/sdqAMvXOFSY)
 
-### 1. install laragon following this -> [Youtube](https://youtu.be/OuJXDowtExc)
+In this episode, you will learn how to set up MySQL database using Laragon.
 
-### 2. start server laragon
+### What is MySQL?
 
-<img src="https://raw.githubusercontent.com/billowdev/nodejs-typescript-fastify-course/main/README/images/ep7/laragon-start.png" alt="laragon-start">
+MySQL is a database. It stores your data in tables. You will use it to store articles and other information.
 
-### 2. open mysql 
+### What is Laragon?
 
-<img src="https://raw.githubusercontent.com/billowdev/nodejs-typescript-fastify-course/main/README/images/ep7/mysql-open.png" alt="mysql-open">
+Laragon is a tool that helps you run MySQL on your computer. It makes it easy to start and manage MySQL.
 
-### 3. click on database
+### Step 1: Install Laragon
 
-<img src="https://raw.githubusercontent.com/billowdev/nodejs-typescript-fastify-course/main/README/images/ep7/click-database.png" alt="click-database">
+First, install Laragon. Follow this video: [How to Install Laragon](https://youtu.be/OuJXDowtExc)
 
-### 4. create database
+### Step 2: Start Laragon server
 
-<img src="https://raw.githubusercontent.com/billowdev/nodejs-typescript-fastify-course/main/README/images/ep7/create-database.png" alt="create-database">
+Open Laragon and click the "Start All" button to start the MySQL server.
 
-### 5. node_fastify_db
+<img src="https://raw.githubusercontent.com/akkaraponph/nodejs-typescript-fastify-course/main/README/images/ep7/laragon-start.png" alt="laragon-start">
 
-<img src="https://raw.githubusercontent.com/billowdev/nodejs-typescript-fastify-course/main/README/images/ep7/node_fastify_db.png" alt="node_fastify_db">
+### Step 3: Open MySQL
+
+Click on the "Database" button in Laragon to open the database manager.
+
+<img src="https://raw.githubusercontent.com/akkaraponph/nodejs-typescript-fastify-course/main/README/images/ep7/mysql-open.png" alt="mysql-open">
+
+### Step 4: Create a new database
+
+1. Click on "Database" in the left sidebar
+2. Right-click and select "Create Database"
+
+<img src="https://raw.githubusercontent.com/akkaraponph/nodejs-typescript-fastify-course/main/README/images/ep7/click-database.png" alt="click-database">
+
+<img src="https://raw.githubusercontent.com/akkaraponph/nodejs-typescript-fastify-course/main/README/images/ep7/create-database.png" alt="create-database">
+
+### Step 5: Name your database
+
+Name your database `node_fastify_db` and click "OK".
+
+<img src="https://raw.githubusercontent.com/akkaraponph/nodejs-typescript-fastify-course/main/README/images/ep7/node_fastify_db.png" alt="node_fastify_db">
+
+Great! Your database is ready. In the next episode, you will learn how to connect your API to this database.
 
 ## [Node js TypeScript Fastify EP 08 Sequelize](https://youtu.be/-OpbjoCiW24)
 
-### 1. install sequelize dotenv and mysql2
-- for sequelize is orm using to interact with database that base on model that our declare
-- for dotenv is package for using environment or .env file that our put variable to keep the secret thing like a username password of database
-- for mysql2 is require when our use MySQL if using postgres will be pg and pg-hstore etc. for another database should back to document of that software
+In this episode, you will learn how to connect your API to the database using Sequelize.
+
+### What is Sequelize?
+
+Sequelize is an ORM (Object-Relational Mapping). It helps you talk to your database. You use models to work with database tables.
+
+### What is dotenv?
+
+Dotenv is a package that helps you use environment variables. Environment variables store secret information like database passwords. You put them in a `.env` file.
+
+### What is mysql2?
+
+mysql2 is a driver for MySQL. It allows your code to connect to MySQL database. If you use PostgreSQL, you would use `pg` instead.
+
+### Step 1: Install packages
+
+Install Sequelize, dotenv, and mysql2:
 
 ```bash
 npm install sequelize dotenv mysql2
 ```
-or
-```
+
+Or if you use yarn:
+
+```bash
 yarn add sequelize dotenv mysql2
 ```
 
-### 2. env file
-the username of mysql laragon by default that is root and password=""
-i seperate that env for config database in difference env -> dev, prod, test
+### Step 2: Create .env file
+
+Create a new file called `.env` in your project root. This file stores your database settings.
+
+**Important:** The default MySQL username in Laragon is `root` and the password is empty `""`.
+
+We separate the settings for different environments: development, production, and test.
 
 ```.env
 NODE_ENV=development
@@ -489,9 +669,13 @@ DB_DIALECT=mysql
 
 ```
 
-### 2. config file and db config file
-the first of all we will import dotenv for using .env file
-then we create config for create config variable that get value from .env file
+### Step 3: Create config files
+
+We need to create config files to use the `.env` file. First, we import dotenv. Then we create a config that reads values from the `.env` file.
+
+#### Step 3.1: Create config.ts
+
+Create a new folder called `config` inside the `src` folder. Then create a file called `config.ts` inside `src/config`.
 
 ```ts
 import dotenv from "dotenv";
@@ -527,7 +711,9 @@ export default config;
 
 ```
 
-### 3. config/db.config
+### Step 3.2: Create db.config.ts
+
+Create a new file called `db.config.ts` inside the `src/config` folder.
 
 ```ts
 import config from "./config"; // this is important!
@@ -557,11 +743,17 @@ module.exports = {
 };
 ```
 
-### 4. models
+### Step 4: Create models
 
-#### 4.1 create the types folders
+Models represent your database tables. They define what data you can store.
 
-#### 4.2 types/articles/article.model.types.ts
+#### Step 4.1: Create types folder
+
+Create a new folder called `types` inside the `src` folder.
+
+#### Step 4.2: Create article model types
+
+Create a new folder called `articles` inside the `src/types` folder. Then create a file called `article.model.types.ts` inside `src/types/articles`.
 
 ```ts
 export interface ArticleAttributes {
@@ -575,12 +767,15 @@ export interface ArticleAttributes {
 }
 ```
 
-#### 4.3 create "models" folder
+#### Step 4.3: Create models folder
 
-#### 4.4 models/index.ts
-code below in commonly that generate by sequelize-cli as models/index.js
+Create a new folder called `models` inside the `src` folder.
 
-but for typescript i modify that get config from  "/../config/db.config.ts"
+#### Step 4.4: Create models/index.ts
+
+Create a new file called `index.ts` inside the `src/models` folder.
+
+**Note:** The code below is usually generated by sequelize-cli. But for TypeScript, we modified it to read config from `../config/db.config.ts`.
 
 ```ts
 "use strict";
@@ -632,9 +827,11 @@ export default db;
 ```
 
 
-#### 4.4 /models/article.model.ts
-create the article.model.ts file and then models/index.ts will read this file for instance the model following that our declare
-such as 
+#### Step 4.5: Create article model
+
+Create a new file called `article.model.ts` inside the `src/models` folder.
+
+This file defines the Article model. The `models/index.ts` file will automatically read this file and create the model based on what you declare. 
 
 ```ts
 "use strict";
@@ -686,11 +883,12 @@ module.exports = (sequelize: any, DataTypes: any) => {
 };
 ```
 
-#### 4.5 change index.ts of application
-change of file : 
-- import database and config file
-- get PORT From config file
-- sync database or using sequelize
+#### Step 4.6: Update index.ts
+
+Now update your `index.ts` file to:
+- Import the database and config files
+- Get the PORT from the config file
+- Sync the database with Sequelize (this creates the tables)
 
 
 ```ts
@@ -714,75 +912,100 @@ app.listen({port:Number(PORT)}, (err) => {
 })
 ```
 
-### 4.6 using nodemon and create the script
+### Step 5: Use nodemon for development
 
-#### install nodemon 
-#### nodemon must use in development only because it will restart the app every time when you update the code
+Nodemon automatically restarts your app when you change the code. This is very helpful during development.
 
-```ts
+**Important:** Only use nodemon in development. It will restart your app every time you save a file.
+
+#### Step 5.1: Install nodemon
+
+```bash
 npm install -D nodemon
 ```
 
-or
+Or if you use yarn:
+
 ```bash
 yarn add -D nodemon
 ```
 
-#### add this line below inside paclage.json at "scripts"
+#### Step 5.2: Add script to package.json
 
-```
+Open your `package.json` file. Find the "scripts" section and add this line:
+
+```json
 "dev": "nodemon index.ts"
 ```
 
-#### run the applicaion using script
+#### Step 5.3: Run your app
+
+Now you can run your app with:
 
 ```bash
 npm run dev
 ```
-or
-```
+
+Or if you use yarn:
+
+```bash
 yarn dev
 ```
 
-## [Node js TypeScript Fastify EP 09 Example Articles API](https://youtube.com/@billowdev)
-in this ep will show example article api in get post put patch delete
-routes -> controllers -> services (calling the model sequelize)  -> mysql database 
-### content
-- routes
-- request types
-- controllers
-- services
-- api result of get post put delete
-  
-### 1. routes
-inside routes of article 
-i will create for the 4 routes that calling handler function from the article controller 
+Your app will automatically restart when you change your code!
+
+## Bonus: Complete CRUD API Example
+
+This is a bonus section. You will learn how to create a complete CRUD API. CRUD means Create, Read, Update, and Delete.
+
+**Note:** This section does not have a video tutorial. Follow the steps below to build a complete Articles API.
+
+### What you will build
+
+You will create an Articles API with these operations:
+- GET - Get all articles
+- GET - Get one article by ID
+- POST - Create a new article
+- PUT - Update an article
+- DELETE - Delete an article
+
+### How it works
+
+The flow is: routes → controllers → services → models (Sequelize) → MySQL database
+
+### Step 1: Update routes
+
+We will create 5 routes in the article router. Each route calls a controller function. 
 ```ts
-import { FastifyInstance } from "fastify"; // import FastifyInstance
+import { FastifyInstance } from "fastify";
 import articleController from './../controllers/article.controller';
 
 const articleRouter = async (app: FastifyInstance) => {
-	// route api app.method("path", {option}, handler)
+	// GET all articles
 	app.get(
 		"/",
 		articleController.handleGetArticle
 	);
 
+	// GET one article by ID
 	app.get(
 		"/get/:id",
 		articleController.handleGetArticleById
 	);
 
+	// POST create a new article
 	app.post(
 		"/create",
 		articleController.handleCreateArticle
 	);
 
+	// PUT update an article
 	app.put(
 		"/update/:id",
 		articleController.handleUpdateArticle
 	);
 	
+	// DELETE delete an article
 	app.delete(
 		"/delete/:id",
 		articleController.handleDeleteArticle
@@ -792,7 +1015,11 @@ const articleRouter = async (app: FastifyInstance) => {
 export default articleRouter;
 ``` 
 
-### 2. types/article.controller.ts
+### Step 2: Create request types
+
+We need to define types for the request data. This helps TypeScript understand what data to expect.
+
+Create a new file called `article.controller.types.ts` inside `src/types/articles`.
 
 ```ts
 import { FastifyRequest } from "fastify";
@@ -819,8 +1046,9 @@ export type ArticleCreateRequest = FastifyRequest<{
 }>;
 ```
 
-### 3. controllers
-in article controller i will create handle function for call service
+### Step 3: Update controllers
+
+In the article controller, we will create handler functions. Each function calls a service function.
 
 ```ts
 import { ArticleCreateRequest, RequestWithIdArticle, UpdateArticleRequest } from "types/articles/article.controller.types";
@@ -860,8 +1088,9 @@ export default {
 }
 ```
 
-### 4. services
-in article service i create service that call the sequelize for interact with the database
+### Step 4: Update services
+
+In the article service, we create functions that use Sequelize to interact with the database.
 
 ```ts
 import { ArticleAttributes } from "types/articles/article.model.types";
@@ -902,28 +1131,41 @@ export default {
 }
 ```
 
-### 4. api result
+### Step 5: Test your API
 
-#### GET Articles
+Now you can test all the routes using Thunder Client. Here are examples of the results:
 
-<img src="https://raw.githubusercontent.com/billowdev/nodejs-typescript-fastify-course/main/README/images/ep9/get-all-article.png" alt="get-all-article">
+#### GET all articles
 
-#### GET ONE Articles
+Visit `GET http://localhost:5000/api/v1/articles` to get all articles:
 
-<img src="https://raw.githubusercontent.com/billowdev/nodejs-typescript-fastify-course/main/README/images/ep9/get-one-article.png" alt="get-one-article">
+<img src="https://raw.githubusercontent.com/akkaraponph/nodejs-typescript-fastify-course/main/README/images/ep9/get-all-article.png" alt="get-all-article">
 
+#### GET one article
 
-#### CREATE Articles
+Visit `GET http://localhost:5000/api/v1/articles/get/:id` to get one article (replace `:id` with an article ID):
 
-<img src="https://raw.githubusercontent.com/billowdev/nodejs-typescript-fastify-course/main/README/images/ep9/create-article.png" alt="create-article">
+<img src="https://raw.githubusercontent.com/akkaraponph/nodejs-typescript-fastify-course/main/README/images/ep9/get-one-article.png" alt="get-one-article">
 
-#### UPDATE Articles
+#### CREATE article
 
-<img src="https://raw.githubusercontent.com/billowdev/nodejs-typescript-fastify-course/main/README/images/ep9/update-article.png" alt="update-article">
+Send a `POST` request to `http://localhost:5000/api/v1/articles/create` with article data in the body:
 
-#### DELETE Articles
+<img src="https://raw.githubusercontent.com/akkaraponph/nodejs-typescript-fastify-course/main/README/images/ep9/create-article.png" alt="create-article">
 
-<img src="https://raw.githubusercontent.com/billowdev/nodejs-typescript-fastify-course/main/README/images/ep9/delete-article.png" alt="delete-article">
+#### UPDATE article
+
+Send a `PUT` request to `http://localhost:5000/api/v1/articles/update/:id` with updated data in the body:
+
+<img src="https://raw.githubusercontent.com/akkaraponph/nodejs-typescript-fastify-course/main/README/images/ep9/update-article.png" alt="update-article">
+
+#### DELETE article
+
+Send a `DELETE` request to `http://localhost:5000/api/v1/articles/delete/:id` to delete an article:
+
+<img src="https://raw.githubusercontent.com/akkaraponph/nodejs-typescript-fastify-course/main/README/images/ep9/delete-article.png" alt="delete-article">
+
+Congratulations! You now have a complete CRUD API working with a database!
 
 
 <!-- ## [Node js TypeScript Fastify EP 010 auth middleware](https://youtube.com/@billowdev) -->
